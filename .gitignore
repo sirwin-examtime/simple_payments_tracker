@@ -1,0 +1,4 @@
+bin/*
+*.swp
+test/dummy/log
+test/dummy/tmp
