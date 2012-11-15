@@ -11,18 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121115122858) do
+ActiveRecord::Schema.define(:version => 20121115134927) do
 
-  create_table "payer_payments", :force => true do |t|
-    t.integer "payment_item_id", :null => false
+  create_table "payments_tracker_payer_payments", :force => true do |t|
+    t.integer "payments_tracker_payment_item_id", :null => false
     t.integer "payer_id"
     t.string  "payer_type"
   end
 
-  create_table "payment_installments", :force => true do |t|
-    t.integer  "payer_payment_id",                                                :null => false
-    t.decimal  "amount",           :precision => 8, :scale => 2, :default => 0.0, :null => false
-    t.integer  "quantity",                                       :default => 1,   :null => false
+  create_table "payments_tracker_payment_installments", :force => true do |t|
+    t.integer  "payments_tracker_payer_payment_id",                                                :null => false
+    t.decimal  "amount",                            :precision => 8, :scale => 2, :default => 0.0, :null => false
+    t.integer  "quantity",                                                        :default => 1,   :null => false
     t.string   "type"
     t.string   "comments"
     t.datetime "received_at"
@@ -30,12 +30,12 @@ ActiveRecord::Schema.define(:version => 20121115122858) do
     t.string   "receiver_type"
   end
 
-  add_index "payment_installments", ["payer_payment_id"], :name => "index_payment_installments_on_payer_payment_id"
-  add_index "payment_installments", ["receiver_id"], :name => "index_payment_installments_on_receiver_id"
-  add_index "payment_installments", ["receiver_type"], :name => "index_payment_installments_on_receiver_type"
-  add_index "payment_installments", ["type"], :name => "index_payment_installments_on_type"
+  add_index "payments_tracker_payment_installments", ["payments_tracker_payer_payment_id"], :name => "pt_installments_on_payer_payment"
+  add_index "payments_tracker_payment_installments", ["receiver_id"], :name => "index_payments_tracker_payment_installments_on_receiver_id"
+  add_index "payments_tracker_payment_installments", ["receiver_type"], :name => "index_payments_tracker_payment_installments_on_receiver_type"
+  add_index "payments_tracker_payment_installments", ["type"], :name => "index_payments_tracker_payment_installments_on_type"
 
-  create_table "payment_items", :force => true do |t|
+  create_table "payments_tracker_payment_items", :force => true do |t|
     t.string   "title",                                                          :null => false
     t.string   "description"
     t.datetime "due_at"
@@ -52,10 +52,10 @@ ActiveRecord::Schema.define(:version => 20121115122858) do
     t.datetime "updated_at",                                                     :null => false
   end
 
-  add_index "payment_items", ["grouping_id"], :name => "index_payment_items_on_grouping_id"
-  add_index "payment_items", ["grouping_type"], :name => "index_payment_items_on_grouping_type"
-  add_index "payment_items", ["owner_id"], :name => "index_payment_items_on_owner_id"
-  add_index "payment_items", ["owner_type"], :name => "index_payment_items_on_owner_type"
-  add_index "payment_items", ["type"], :name => "index_payment_items_on_type"
+  add_index "payments_tracker_payment_items", ["grouping_id"], :name => "index_payments_tracker_payment_items_on_grouping_id"
+  add_index "payments_tracker_payment_items", ["grouping_type"], :name => "index_payments_tracker_payment_items_on_grouping_type"
+  add_index "payments_tracker_payment_items", ["owner_id"], :name => "index_payments_tracker_payment_items_on_owner_id"
+  add_index "payments_tracker_payment_items", ["owner_type"], :name => "index_payments_tracker_payment_items_on_owner_type"
+  add_index "payments_tracker_payment_items", ["type"], :name => "index_payments_tracker_payment_items_on_type"
 
 end

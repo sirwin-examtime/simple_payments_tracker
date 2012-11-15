@@ -2,3 +2,5 @@ bin/*
 *.swp
 test/dummy/log
 test/dummy/tmp
+test/dummy/db/development.sqlite3
+test/dummy/db/test.sqlite3

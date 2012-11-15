@@ -1,3 +1,3 @@
 PaymentsTracker::Engine.routes.draw do
-  root :to => 'payments#index'
+  root :to => 'payment_items#index'
 end
