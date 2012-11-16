@@ -1,4 +1,2 @@
-module PaymentsTracker
-  class ApplicationController < ActionController::Base
-  end
+class PaymentsTracker::ApplicationController < ApplicationController
 end
