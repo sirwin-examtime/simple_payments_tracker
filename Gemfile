@@ -11,6 +11,11 @@ gem 'validates_timeliness'
 
 group :test do
   gem "ffaker"
+  gem 'rspec-rails'
+  gem 'simplecov'
+  gem 'simplecov-rcov'
+  gem 'ci_reporter'
+  gem 'factory_girl_rails',  '3.2.0'
 end
 
 # Declare any dependencies that are still in development here instead of in

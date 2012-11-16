@@ -21,12 +21,13 @@ class CreatePaymentsTrackerSchema < ActiveRecord::Migration
     add_index :payments_tracker_payment_items, :grouping_id
 
     create_table :payments_tracker_payer_payments do |t|
-      t.integer :payments_tracker_payment_item_id, :null => false
+      t.integer :payment_item_id, :null => false
       t.references :payer, :polymorphic => true
     end
     
     create_table :payments_tracker_payment_installments do |t|
-      t.integer :payments_tracker_payer_payment_id, :null => false
+     # t.integer :payments_tracker_payer_payment_id, :null => false
+      t.integer :payer_payment_id, :null => false
       t.decimal :amount, :precision => 8, :scale => 2, :default => 0.0, :null => false
       t.integer :quantity, :default => 1, :null => false
       t.string :type
@@ -35,7 +36,8 @@ class CreatePaymentsTrackerSchema < ActiveRecord::Migration
       t.references :receiver, :polymorphic => true
     end
 
-    add_index :payments_tracker_payment_installments, :payments_tracker_payer_payment_id, { :name => 'pt_installments_on_payer_payment' }
+    #add_index :payments_tracker_payment_installments, :payments_tracker_payer_payment_id, { :name => 'pt_installments_on_payer_payment' }
+    add_index :payments_tracker_payment_installments, :payer_payment_id, { :name => 'pt_installments_on_payer_payment' }
     add_index :payments_tracker_payment_installments, :type
     add_index :payments_tracker_payment_installments, :receiver_type
     add_index :payments_tracker_payment_installments, :receiver_id

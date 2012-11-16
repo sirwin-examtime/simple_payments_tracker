@@ -11,18 +11,31 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121115134927) do
+ActiveRecord::Schema.define(:version => 20121115164738) do
+
+  create_table "admin_users", :force => true do |t|
+    t.string "name"
+  end
+
+  create_table "groups", :force => true do |t|
+    t.string "name"
+  end
+
+  create_table "members", :force => true do |t|
+    t.string  "name"
+    t.integer "group_id"
+  end
 
   create_table "payments_tracker_payer_payments", :force => true do |t|
-    t.integer "payments_tracker_payment_item_id", :null => false
+    t.integer "payment_item_id", :null => false
     t.integer "payer_id"
     t.string  "payer_type"
   end
 
   create_table "payments_tracker_payment_installments", :force => true do |t|
-    t.integer  "payments_tracker_payer_payment_id",                                                :null => false
-    t.decimal  "amount",                            :precision => 8, :scale => 2, :default => 0.0, :null => false
-    t.integer  "quantity",                                                        :default => 1,   :null => false
+    t.integer  "payer_payment_id",                                                :null => false
+    t.decimal  "amount",           :precision => 8, :scale => 2, :default => 0.0, :null => false
+    t.integer  "quantity",                                       :default => 1,   :null => false
     t.string   "type"
     t.string   "comments"
     t.datetime "received_at"
@@ -30,7 +43,7 @@ ActiveRecord::Schema.define(:version => 20121115134927) do
     t.string   "receiver_type"
   end
 
-  add_index "payments_tracker_payment_installments", ["payments_tracker_payer_payment_id"], :name => "pt_installments_on_payer_payment"
+  add_index "payments_tracker_payment_installments", ["payer_payment_id"], :name => "pt_installments_on_payer_payment"
   add_index "payments_tracker_payment_installments", ["receiver_id"], :name => "index_payments_tracker_payment_installments_on_receiver_id"
   add_index "payments_tracker_payment_installments", ["receiver_type"], :name => "index_payments_tracker_payment_installments_on_receiver_type"
   add_index "payments_tracker_payment_installments", ["type"], :name => "index_payments_tracker_payment_installments_on_type"
