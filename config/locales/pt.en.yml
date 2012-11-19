@@ -1,0 +1,28 @@
+---
+en:
+  payments_tracker:
+    payment_items: "Payment items"
+    all_items: "All"
+    general_items: "General"
+    multiple_items: "Multiple"
+    open_items: "Open"
+    status: "Status"
+    new: "New"
+    payment_item:
+      new: "New"
+    activerecord:
+      attributes:
+        payment_item:
+          title: "Item title"
+          description: "Description"
+          grouping: "Assigned to"
+          owner: "Owner"
+          expires: "Expires"
+          due: "Due"
+          type: "Type"
+          amount: "Amount"
+        member:
+          first_name: "First name"
+          last_name: "Last name"
+      models:
+        payment_item: "Payment item"

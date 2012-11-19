@@ -20,6 +20,11 @@ module PaymentsTracker
     after_save :check_if_can_be_closed
     after_create :create_payer_payment_records
 
+    def type_name
+      type_name = type.sub('PaymentItem','')
+      type_name.sub(/.*::/,'')
+    end
+
     def expirable?
       !expires_at.nil?
     end

@@ -8,6 +8,8 @@ gemspec
 # jquery-rails is used by the dummy application
 gem "jquery-rails"
 gem 'validates_timeliness'
+gem 'haml'
+gem 'haml-rails'
 
 group :test do
   gem "ffaker"
