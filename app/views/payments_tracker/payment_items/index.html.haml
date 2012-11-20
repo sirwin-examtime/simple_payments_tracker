@@ -1,0 +1,22 @@
+%h1.no_print
+  = t('payments_tracker.payment_items')
+  = link_to t("general.actions.print"), "#", :id => "print_index_button", :class => "btn no_print"
+
+.sub_section.payment_item_filters.no_print
+  %h2= t('general.actions.filter')
+  %form{:method => :get}
+    .form_content
+      .field.filter
+        = label_tag 'all', t('payments_tracker.all_items')
+        = radio_button_tag 'filter', 'all', @filter == 'all', {:checked => "checked"}
+        = label_tag 'general', t('payments_tracker.general_items')
+        = radio_button_tag 'filter', 'general', @filter == 'general'
+        = label_tag 'multiple', t('payments_tracker.multiple_items')
+        = radio_button_tag 'filter', 'multiple', @filter == 'multiple'
+        = label_tag 'open', t('payments_tracker.open_items')
+        = radio_button_tag 'filter', 'open', @filter == 'open'
+
+= render 'payment_items_table'
+
+.links
+  = link_to t("payments_tracker.payment_item.new_general"), new_payment_item_path(:kind => 'general'), :class => "btn primary", :id => "create_new"

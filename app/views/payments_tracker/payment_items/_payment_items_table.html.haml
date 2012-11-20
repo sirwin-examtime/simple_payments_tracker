@@ -1,0 +1,38 @@
+- @payment_items ||= []
+%table#payment_items_table_datatable.datatable.table-striped.table-bordered.table-condensed
+  %thead
+    %tr
+      %th
+        = t('payments_tracker.activerecord.attributes.payment_item.title')
+      %th
+        = t('payments_tracker.activerecord.attributes.payment_item.owner')
+      %th
+        = t('payments_tracker.activerecord.attributes.payment_item.grouping')
+      %th
+        = t('payments_tracker.activerecord.attributes.payment_item.expires')
+      %th
+        = t('payments_tracker.activerecord.attributes.payment_item.due')
+      %th
+        = t('payments_tracker.activerecord.attributes.payment_item.type')
+      %th
+        = t('payments_tracker.activerecord.attributes.payment_item.amount')
+      %th
+        = t('payments_tracker.status')
+      %th.action
+
+  %tbody
+    - @payment_items.each do |item|
+      %tr
+        %td= item.title
+        %td= item.owner.name
+        %td= item.grouping.name
+        %td= distance_of_time_in_words_to_now(item.expires_at) unless item.expires_at.nil?
+        %td= distance_of_time_in_words_to_now(item.due_at) unless item.due_at.nil?
+        %td= item.type_name
+        %td= render "#{item.type_name.downcase}_amounts", :item => item
+        %td
+          - if item.closed?
+            = t('payments_tracker.closed')
+          - else
+            = t('payments_tracker.open')
+        %td
