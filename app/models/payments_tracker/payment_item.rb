@@ -17,10 +17,11 @@ module PaymentsTracker
     has_many :payer_payments
     has_many :payment_installments, :through => :payer_payments
 
-    after_save :check_if_can_be_closed
+    after_update :check_if_can_be_closed
     after_create :create_payer_payment_records
 
     def type_name
+      # Yikes
       type_name = type.sub('PaymentItem','')
       type_name.sub(/.*::/,'')
     end
@@ -34,7 +35,7 @@ module PaymentsTracker
     end
 
     def closable?
-      !closed? and expired?
+      !closed? and (expired? or 0 == outstanding_payments.size)
     end
 
     def open?
@@ -51,6 +52,11 @@ module PaymentsTracker
     
     def completed?
       closed?
+    end
+
+    def update!
+      # invoke callbacks directly?
+      check_if_can_be_closed
     end
 
     private

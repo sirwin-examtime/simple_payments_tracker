@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121115164738) do
+ActiveRecord::Schema.define(:version => 20121120151942) do
 
   create_table "admin_users", :force => true do |t|
     t.string "name"
@@ -36,7 +36,6 @@ ActiveRecord::Schema.define(:version => 20121115164738) do
     t.integer  "payer_payment_id",                                                :null => false
     t.decimal  "amount",           :precision => 8, :scale => 2, :default => 0.0, :null => false
     t.integer  "quantity",                                       :default => 1,   :null => false
-    t.string   "type"
     t.string   "comments"
     t.datetime "received_at"
     t.integer  "receiver_id"
@@ -46,7 +45,6 @@ ActiveRecord::Schema.define(:version => 20121115164738) do
   add_index "payments_tracker_payment_installments", ["payer_payment_id"], :name => "pt_installments_on_payer_payment"
   add_index "payments_tracker_payment_installments", ["receiver_id"], :name => "index_payments_tracker_payment_installments_on_receiver_id"
   add_index "payments_tracker_payment_installments", ["receiver_type"], :name => "index_payments_tracker_payment_installments_on_receiver_type"
-  add_index "payments_tracker_payment_installments", ["type"], :name => "index_payments_tracker_payment_installments_on_type"
 
   create_table "payments_tracker_payment_items", :force => true do |t|
     t.string   "title",                                                          :null => false

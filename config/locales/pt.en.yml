@@ -9,7 +9,7 @@ en:
     status: "Status"
     new: "New"
     payment_item:
-      new: "New"
+      new_general: "New General payment item"
     activerecord:
       attributes:
         payment_item:
