@@ -1,0 +1,10 @@
+%h1 
+  = t("payments_tracker.payment_item.new_#{params[:kind]}")
+
+  .btn.no_print#save_button{:title => t("general.actions.save")}
+  .btn.no_print#cancel_button{:title => t("general.actions.cancel")}
+
+= render 'form'
+
+.links
+  = link_to t("general.actions.back"), payment_items_path
