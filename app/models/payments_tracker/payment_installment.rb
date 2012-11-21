@@ -1,4 +1,5 @@
 module PaymentsTracker
+  # This class supports a basic payment installment model.  An installment instance should not be created directly; it should only be created through the owning PayerPayment model.
   class PaymentInstallment < ActiveRecord::Base
     attr_accessible :receiver, :amount
 
@@ -19,7 +20,7 @@ module PaymentsTracker
     end
 
     def update_payment_item
-      payment_item.update!
+      payment_item.close_if_closable!
     end
 
   end

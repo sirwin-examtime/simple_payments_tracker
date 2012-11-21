@@ -93,6 +93,7 @@ GEM
     rake (10.0.1)
     rdoc (3.12)
       json (~> 1.4)
+    redcarpet (2.2.2)
     rspec-core (2.12.0)
     rspec-expectations (2.12.0)
       diff-lcs (~> 1.1.3)
@@ -125,6 +126,9 @@ GEM
     tzinfo (0.3.35)
     validates_timeliness (3.0.14)
       timeliness (~> 0.3.6)
+    yard (0.8.3)
+    yard-rails (0.3.0)
+      yard
 
 PLATFORMS
   ruby
@@ -137,8 +141,10 @@ DEPENDENCIES
   haml-rails
   jquery-rails
   payments_tracker!
+  redcarpet
   rspec-rails
   simplecov
   simplecov-rcov
   sqlite3
   validates_timeliness
+  yard-rails

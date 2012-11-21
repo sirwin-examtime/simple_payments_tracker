@@ -55,9 +55,9 @@ describe PaymentsTracker do
     end
 
     it "should have helper to detect when a payment item is closed" do
-      assert( false == @gpi.completed? )
+      assert( false == @gpi.closed? )
       @gpi.update_attribute(:closed, true)
-      assert( true == @gpi.completed? )
+      assert( true == @gpi.closed? )
     end
 
     it "should not allow a quantity > 1 to be set for a general payment item" do
@@ -73,7 +73,7 @@ describe PaymentsTracker do
     end
 
     it "should automatically close when the expiry date is reached" do
-      assert( false == @gpi.completed? )
+      assert( false == @gpi.closed? )
       assert( false == @gpi.expired? )
       assert( true == @gpi.open? )
 
@@ -82,8 +82,8 @@ describe PaymentsTracker do
       @gpi.update_attribute(:expires_at, Time.now - 1.day)
 
       assert( true == @gpi.expired? )
-      assert( true == @gpi.completed? )
       assert( true == @gpi.closed? )
+      assert( false == @gpi.open? )
     end
 
   end

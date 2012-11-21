@@ -11,6 +11,11 @@ gem 'validates_timeliness'
 gem 'haml'
 gem 'haml-rails'
 
+group :development do
+  gem 'yard-rails'
+  gem 'redcarpet'
+end
+
 group :test do
   gem "ffaker"
   gem 'rspec-rails'
