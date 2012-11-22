@@ -15,7 +15,7 @@ Some of the terms used in this Gem:
 
  1. 'Payment Items' are the basic units of organization of items that require payment tracking e.g. a school outing
 
- 1. 'Payment Installments' are the basic units of recording the details of an individuel payment against a Payment Item.
+ 1. 'Payment Installments' are the basic units of recording the details of an individual payment against a Payment Item.
 
  1. 'Payer Payments' are the interface for users to make Payment Installments against a Payment Item.
 
