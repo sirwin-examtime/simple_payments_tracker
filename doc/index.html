@@ -2,7 +2,7 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>
   File: README
   
@@ -69,13 +69,48 @@
 
 <h2>Requirements</h2>
 
-<blockquote>
-<p>Rails 3.2</p>
-</blockquote>
+<ul>
+<li>Rails 3.2</li>
+</ul>
+
+<h2>Terminology</h2>
+
+<p>Some of the terms used in this Gem:</p>
+
+<ol>
+<li><p>&#39;Payment Items&#39; are the basic units of organization of items that require payment tracking e.g. a school outing</p></li>
+<li><p>&#39;Payment Installments&#39; are the basic units of recording the details of an individuel payment against a Payment Item.</p></li>
+<li><p>&#39;Payer Payments&#39; are the interface for users to make Payment Installments against a Payment Item.</p>
+
+<p>e.g. a Payer makes an installment against a Payment Item <i>through</i> a Payer Payment object</p>
+
+<p>For a Payment Item with an amount of £10.00, a Payer may make 2 installments each of £5 through the same Payer Payment record to fulfil their part of the Payment Item.</p></li>
+<li><p>&#39;Admin users&#39; are privileged users.</p>
+
+<p>Your application may enforce various types of admin roles, some with higher privileges than others.  You will need to enforce your own responsibilities around which users are allowed to create and manage Payment Items</p></li>
+</ol>
+
+<h2>Usage</h2>
+
+<p>Create a Payment Item and assign a group of users (&#39;payers&#39;) to it. This creates a Payer Payment instance for each payer. Admin users then use the Payer Payment instance to make installments on behalf of the payers towards the related Payment Item.</p>
+
+<p>This gem supports the following types of Payment Items:</p>
+
+<ol>
+<li><p>General Payment Items</p>
+
+<p>For example: a trip has been arranged for a group of users.  Set the amount value (per user).  The payment item will automatically close when each user in the group has paid the full amount through 1 or more installments.</p></li>
+<li><p>Multiple Payment Items</p>
+
+<p>For example: recurring purchases of school uniforms</p></li>
+<li><p>Open Payment Items</p>
+
+<p>For example: fundraising</p></li>
+</ol>
 </div></div>
 
     <div id="footer">
-  Generated on Wed Nov 21 16:16:15 2012 by
+  Generated on Thu Nov 22 11:55:01 2012 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.3 (ruby-1.9.3).
 </div>
