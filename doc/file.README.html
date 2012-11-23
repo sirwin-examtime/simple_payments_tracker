@@ -73,13 +73,44 @@
 <li>Rails 3.2</li>
 </ul>
 
+<h2>Installation</h2>
+
+<p>Add the following to your Gemfile:</p>
+
+<pre class="code ruby"><code><span class='id identifier rubyid_gem'>gem</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>payments_tracker</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='symbol'>:git</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>git@github.com:ExamTime/payments_tracker.git</span><span class='tstring_end'>'</span></span>
+</code></pre>
+
+<p>Then run:</p>
+
+<pre class="code ruby"><code>bundle install
+rails g payments_tracker:install:migrations
+rake db:migrate
+</code></pre>
+
+<h2>Integration with your application</h2>
+
+<p>Edit your routes.rb file to mount the Payments Tracker engine. For example:</p>
+
+<pre class="code ruby"><code><span class='id identifier rubyid_mount'>mount</span> <span class='const'>PaymentsTracker</span><span class='op'>::</span><span class='const'>Engine</span><span class='comma'>,</span> <span class='symbol'>:at</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>payments</span><span class='tstring_end'>&quot;</span></span>
+</code></pre>
+
+<p>Or:</p>
+
+<pre class="code ruby"><code>scope &quot;model_x/:id&quot; do
+  mount PaymentsTracker::Engine, :at =&gt; &quot;payments&quot;
+  ...
+end
+</code></pre>
+
 <h2>Terminology</h2>
 
 <p>Some of the terms used in this Gem:</p>
 
 <ol>
-<li><p>&#39;Payment Items&#39; are the basic units of organization of items that require payment tracking e.g. a school outing</p></li>
-<li><p>&#39;Payment Installments&#39; are the basic units of recording the details of an individuel payment against a Payment Item.</p></li>
+<li><p>&#39;Payment Items&#39;</p>
+
+<p>These are the basic units of organization of items that require payment tracking e.g. a school outing</p></li>
+<li><p>&#39;Payment Installments&#39; are the basic units of recording the details of an individual payment against a Payment Item.</p></li>
 <li><p>&#39;Payer Payments&#39; are the interface for users to make Payment Installments against a Payment Item.</p>
 
 <p>e.g. a Payer makes an installment against a Payment Item <i>through</i> a Payer Payment object</p>
@@ -110,7 +141,7 @@
 </div></div>
 
     <div id="footer">
-  Generated on Thu Nov 22 11:55:01 2012 by
+  Generated on Fri Nov 23 11:43:15 2012 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.3 (ruby-1.9.3).
 </div>
